@@ -1,12 +1,20 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
+import Navbar from "./navbar";
+import Footer from "./footer";
 
 type Props = {
-  children?: ReactNode
-}
+  children?: ReactNode;
+};
 
 const Layout = ({ children }: Props) => {
   // ✍️ create the custom layout
-  return <></>
-}
+  return (
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+    </>
+  );
+};
 
-export default Layout
+export default Layout;

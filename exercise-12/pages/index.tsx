@@ -1,9 +1,9 @@
-// ✍️ import GetStaticProps from 'next'
-import { List, ListItem, Container, Heading } from '@chakra-ui/react'
-
+import type { GetStaticProps } from "next";
+import { List, ListItem, Container, Heading } from "@chakra-ui/react";
+import Link from "next/link";
 type Props = {
-  genres: string[]
-}
+  genres: string[];
+};
 
 const Home = ({ genres }: Props) => {
   return (
@@ -11,13 +11,23 @@ const Home = ({ genres }: Props) => {
       <Heading mb={4}>Genres:</Heading>
       <List>
         {genres.map((genre) => (
-          <ListItem key={genre}>{genre}</ListItem>
+          <ListItem key={genre}>
+            <Link href={`/${genre}`}>{genre}</Link>
+          </ListItem>
         ))}
       </List>
     </Container>
-  )
-}
+  );
+};
 
 // ✍️ export the getStaticProps method and return an array of genres as props
 
-export default Home
+export const getStaticProps: GetStaticProps<Props> = () => {
+  return {
+    props: {
+      genres: ["rock", "country", "pop", "indie"],
+    },
+  };
+};
+
+export default Home;

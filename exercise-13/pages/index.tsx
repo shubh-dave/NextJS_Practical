@@ -1,11 +1,11 @@
 // ✍️ import GetServerSideProps from 'next'
-import type { GetStaticProps } from 'next'
-import Link from 'next/link'
-import { List, ListItem, Container, Heading } from '@chakra-ui/react'
+import type { GetServerSideProps } from "next";
+import Link from "next/link";
+import { List, ListItem, Container, Heading } from "@chakra-ui/react";
 
 type Props = {
-  genres: string[]
-}
+  genres: string[];
+};
 
 const Home = ({ genres }: Props) => {
   return (
@@ -19,26 +19,29 @@ const Home = ({ genres }: Props) => {
         ))}
       </List>
     </Container>
-  )
-}
+  );
+};
 
 // ✍️ export the getServerSideProps method instead
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  console.log("Fetching Data with SSR");
   const genres = [
-    'rock',
-    'country',
-    'pop',
-    'rap',
-    'folk',
-    'metal',
-    'rnb',
-    'funk'
-  ]
+    "rock",
+    "country",
+    "pop",
+    "rap",
+    "folk",
+    "metal",
+    "rnb",
+    "funk",
+  ];
   return {
     props: {
-      genres
-    }
-  }
-}
+      genres,
+    },
+  };
+};
 
-export default Home
+export default Home;
